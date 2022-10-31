@@ -8,6 +8,7 @@ import {
 
 interface HeaderProps {
   totalFilms: number;
+  filmsToView: number;
   onClickNext: () => void;
   onClickPrevious: () => void;
   disabledButtonNext: boolean;
@@ -16,6 +17,7 @@ interface HeaderProps {
 
 export function Header({
   totalFilms,
+  filmsToView,
   onClickNext,
   onClickPrevious,
   disabledButtonNext = false,
@@ -23,7 +25,9 @@ export function Header({
 }: HeaderProps) {
   return (
     <Container>
-      <TotalFilms>Filmes - {totalFilms}</TotalFilms>
+      <TotalFilms>
+        Filmes - {totalFilms}/{filmsToView}
+      </TotalFilms>
 
       <BoxButtonNextPrevious>
         <ButtonNextPrevious
