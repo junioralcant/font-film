@@ -45,4 +45,11 @@ export const Description = styled.span`
 
   bottom: 1rem;
   left: 1rem;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
