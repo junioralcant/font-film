@@ -1,5 +1,9 @@
+import { useEffect, useState } from 'react';
 import { Film } from '../../components/Film';
 import { Header } from '../../components/Header';
+import { FilmDTO } from '../../dtos/FilmDTO';
+import { api } from '../../services/api';
+
 import {
   Container,
   ContainerFilms,
@@ -7,6 +11,22 @@ import {
 } from './styles';
 
 export function Home() {
+  const [films, setFilms] = useState<FilmDTO[]>([]);
+  const [skip, setSkip] = useState(0);
+  const [take, setTake] = useState(10);
+
+  useEffect(() => {
+    async function loadFilms() {
+      const response = await api.get(
+        `/films/list?skip=${skip}&take=${take}`
+      );
+
+      setFilms(response.data);
+    }
+
+    loadFilms();
+  }, []);
+
   function nextPage() {
     alert('Next page');
   }
@@ -25,31 +45,14 @@ export function Home() {
         />
       </ContainerPagination>
       <ContainerFilms>
-        <Film
-          background="https://image.tmdb.org/t/p/original/xtPBZYaWQMQxRpy7mkdk5n1bTxs.jpg"
-          title="Tropa de Elite 2"
-          description="Nascimento é afastado do Bope após uma operação que dá errado e vai para a Secretaria de Segurança Pública do Rio."
-        />
-        <Film
-          background="https://image.tmdb.org/t/p/original/xtPBZYaWQMQxRpy7mkdk5n1bTxs.jpg"
-          title="Tropa de Elite 2"
-          description="Nascimento é afastado do Bope após uma operação que dá errado e vai para a Secretaria de Segurança Pública do Rio."
-        />
-        <Film
-          background="https://image.tmdb.org/t/p/original/xtPBZYaWQMQxRpy7mkdk5n1bTxs.jpg"
-          title="Tropa de Elite 2"
-          description="Nascimento é afastado do Bope após uma operação que dá errado e vai para a Secretaria de Segurança Pública do Rio."
-        />
-        <Film
-          background="https://image.tmdb.org/t/p/original/xtPBZYaWQMQxRpy7mkdk5n1bTxs.jpg"
-          title="Tropa de Elite 2"
-          description="Nascimento é afastado do Bope após uma operação que dá errado e vai para a Secretaria de Segurança Pública do Rio."
-        />
-        <Film
-          background="https://image.tmdb.org/t/p/original/xtPBZYaWQMQxRpy7mkdk5n1bTxs.jpg"
-          title="Tropa de Elite 2"
-          description="Nascimento é afastado do Bope após uma operação que dá errado e vai para a Secretaria de Segurança Pública do Rio."
-        />
+        {films.map((film) => (
+          <Film
+            key={film.id}
+            background={film.banner}
+            title={film.title}
+            description={film.description}
+          />
+        ))}
       </ContainerFilms>
     </Container>
   );
