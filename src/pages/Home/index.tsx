@@ -15,6 +15,10 @@ export function Home() {
   const [skip, setSkip] = useState(0);
   const [take, setTake] = useState(10);
   const [totalFilms, setTotalFilms] = useState(0);
+  const [
+    disabledButtonUpdateListFilms,
+    setDisabledButtonUpdateListFilms,
+  ] = useState(false);
 
   useEffect(() => {
     async function loadFilms() {
@@ -37,6 +41,26 @@ export function Home() {
 
     loadTotalFilms();
   }, [skip]);
+
+  async function updateListFilms() {
+    try {
+      setDisabledButtonUpdateListFilms(true);
+      const response = await api.post('/films/update');
+
+      if (response.data.length > 0) {
+        const response = await api.get(
+          `/films/list?skip=${skip}&take=${take}`
+        );
+
+        setFilms(response.data);
+      }
+
+      setDisabledButtonUpdateListFilms(false);
+    } catch (error) {
+      console.log(error);
+      setDisabledButtonUpdateListFilms(false);
+    }
+  }
 
   function nextPage() {
     setSkip(skip + 10);
@@ -63,8 +87,12 @@ export function Home() {
           filmsToView={subFilms}
           onClickPrevious={previousPage}
           onClickNext={nextPage}
+          onClickButtonUpdateListFilms={updateListFilms}
           disabledButtonPrevious={disabledButtonPrevious()}
           disabledButtonNext={disabledButtonNex()}
+          disabledButtonUpdateListFilms={
+            disabledButtonUpdateListFilms
+          }
         />
       </ContainerPagination>
       <ContainerFilms>
