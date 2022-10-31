@@ -53,7 +53,10 @@ export function Home() {
           `/films/list?skip=${skip}&take=${take}`
         );
 
+        const responseTotal = await api.get('/films/list?take=1000');
+
         setFilms(response.data);
+        setTotalFilms(responseTotal.data.length);
       }
       toast.success('Lista de filmes atualizada!');
       setDisabledButtonUpdateListFilms(false);
