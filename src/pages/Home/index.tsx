@@ -14,6 +14,7 @@ export function Home() {
   const [films, setFilms] = useState<FilmDTO[]>([]);
   const [skip, setSkip] = useState(0);
   const [take, setTake] = useState(10);
+  const [totalFilms, setTotalFilms] = useState(0);
 
   useEffect(() => {
     async function loadFilms() {
@@ -25,6 +26,16 @@ export function Home() {
     }
 
     loadFilms();
+  }, [skip]);
+
+  useEffect(() => {
+    async function loadTotalFilms() {
+      const response = await api.get('/films/list?take=1000');
+
+      setTotalFilms(response.data.length);
+    }
+
+    loadTotalFilms();
   }, [skip]);
 
   function nextPage() {
@@ -39,15 +50,17 @@ export function Home() {
     return skip <= 0;
   }
 
+  let subFilms = totalFilms - skip;
   function disabledButtonNex() {
-    return skip >= 50;
+    return subFilms <= 10;
   }
 
   return (
     <Container>
       <ContainerPagination>
         <Header
-          totalFilms={100}
+          totalFilms={totalFilms}
+          filmsToView={subFilms}
           onClickPrevious={previousPage}
           onClickNext={nextPage}
           disabledButtonPrevious={disabledButtonPrevious()}
