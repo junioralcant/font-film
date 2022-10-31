@@ -5,7 +5,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  width: 1000px;
+  width: 100%;
 `;
 
 export const BoxButtonAndTitle = styled.div`

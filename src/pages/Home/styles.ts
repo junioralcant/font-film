@@ -10,7 +10,13 @@ export const Container = styled.div`
 `;
 
 export const ContainerPagination = styled.header`
+  width: 1000px;
+
   margin-bottom: 1rem;
+
+  @media (max-width: 900px) {
+    width: 320px;
+  }
 `;
 
 export const ContainerFilms = styled.main`
@@ -21,4 +27,10 @@ export const ContainerFilms = styled.main`
   width: 1000px;
 
   padding-bottom: 2rem;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+
+    width: 320px;
+  }
 `;
