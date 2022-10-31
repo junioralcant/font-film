@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import { Film } from '../../components/Film';
 import { Header } from '../../components/Header';
 import { FilmDTO } from '../../dtos/FilmDTO';
@@ -54,11 +55,12 @@ export function Home() {
 
         setFilms(response.data);
       }
-
+      toast.success('Lista de filmes atualizada!');
       setDisabledButtonUpdateListFilms(false);
     } catch (error) {
       console.log(error);
       setDisabledButtonUpdateListFilms(false);
+      toast.error('Erro em atualizar lista de filmes!');
     }
   }
 
