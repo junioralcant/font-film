@@ -10,23 +10,33 @@ interface HeaderProps {
   totalFilms: number;
   onClickNext: () => void;
   onClickPrevious: () => void;
+  disabledButtonNext: boolean;
+  disabledButtonPrevious: boolean;
 }
 
 export function Header({
   totalFilms,
   onClickNext,
   onClickPrevious,
+  disabledButtonNext = false,
+  disabledButtonPrevious = false,
 }: HeaderProps) {
   return (
     <Container>
       <TotalFilms>Filmes - {totalFilms}</TotalFilms>
 
       <BoxButtonNextPrevious>
-        <ButtonNextPrevious onClick={onClickPrevious}>
+        <ButtonNextPrevious
+          onClick={onClickPrevious}
+          disabled={disabledButtonPrevious}
+        >
           <ArrowCircleLeft size={32} />
         </ButtonNextPrevious>
 
-        <ButtonNextPrevious onClick={onClickNext}>
+        <ButtonNextPrevious
+          onClick={onClickNext}
+          disabled={disabledButtonNext}
+        >
           <ArrowCircleRight size={32} />
         </ButtonNextPrevious>
       </BoxButtonNextPrevious>

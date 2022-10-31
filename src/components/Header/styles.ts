@@ -26,4 +26,9 @@ export const ButtonNextPrevious = styled.button`
   &:hover {
     color: ${(props) => props.theme['gray-600']};
   }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 `;
