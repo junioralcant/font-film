@@ -25,14 +25,22 @@ export function Home() {
     }
 
     loadFilms();
-  }, []);
+  }, [skip]);
 
   function nextPage() {
-    alert('Next page');
+    setSkip(skip + 10);
   }
 
   function previousPage() {
-    alert('Previous page');
+    setSkip(skip - 10);
+  }
+
+  function disabledButtonPrevious() {
+    return skip <= 0;
+  }
+
+  function disabledButtonNex() {
+    return skip >= 50;
   }
 
   return (
@@ -42,6 +50,8 @@ export function Home() {
           totalFilms={100}
           onClickPrevious={previousPage}
           onClickNext={nextPage}
+          disabledButtonPrevious={disabledButtonPrevious()}
+          disabledButtonNext={disabledButtonNex()}
         />
       </ContainerPagination>
       <ContainerFilms>
