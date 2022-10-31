@@ -19,4 +19,6 @@ export const ContainerFilms = styled.main`
   grid-gap: 2rem;
 
   width: 1000px;
+
+  padding-bottom: 2rem;
 `;
