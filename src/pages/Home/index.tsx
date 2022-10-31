@@ -1,9 +1,29 @@
 import { Film } from '../../components/Film';
-import { Container, ContainerFilms } from './styles';
+import { Header } from '../../components/Header';
+import {
+  Container,
+  ContainerFilms,
+  ContainerPagination,
+} from './styles';
 
 export function Home() {
+  function nextPage() {
+    alert('Next page');
+  }
+
+  function previousPage() {
+    alert('Previous page');
+  }
+
   return (
     <Container>
+      <ContainerPagination>
+        <Header
+          totalFilms={100}
+          onClickPrevious={previousPage}
+          onClickNext={nextPage}
+        />
+      </ContainerPagination>
       <ContainerFilms>
         <Film
           background="https://image.tmdb.org/t/p/original/xtPBZYaWQMQxRpy7mkdk5n1bTxs.jpg"
