@@ -60,7 +60,7 @@ export const ButtonNextPrevious = styled.button`
   }
 
   &:disabled {
-    opacity: 0.5;
+    color: ${(props) => props.theme['gray-600']};
     cursor: not-allowed;
   }
 `;
