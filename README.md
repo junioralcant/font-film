@@ -10,4 +10,5 @@ https://filmsfront.netlify.app
 
 1. You must have node installed
 2. Use the `npm install` or `yarn install` command to install the dependencies
-3. Use the `npm run dev` or `yarn dev` command to start application
+3. Create the .env file and configure the environment variables that are in the .env.example file
+4. Use the `npm run dev` or `yarn dev` command to start application
