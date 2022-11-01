@@ -32,24 +32,39 @@ export const Title = styled.span`
   color: ${(props) => props.theme['white']};
   font-weight: bold;
 
-  bottom: 4.3rem;
+  bottom: 6.3rem;
   left: 1rem;
 `;
 
-export const Description = styled.span`
+const BaseText = styled.span`
   position: absolute;
   width: 90%;
 
   color: ${(props) => props.theme['gray-400']};
   font-size: 0.8rem;
-
-  bottom: 1rem;
   left: 1rem;
 
   display: -webkit-box;
-  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-
+  -webkit-line-clamp: 3;
   text-overflow: ellipsis;
   overflow: hidden;
+`;
+
+export const Description = styled(BaseText)`
+  bottom: 3rem;
+`;
+
+export const Productor = styled(BaseText)`
+  opacity: 0.8;
+  bottom: 1.5rem;
+
+  -webkit-line-clamp: 1;
+`;
+
+export const Director = styled(BaseText)`
+  opacity: 0.8;
+  bottom: 0.5rem;
+
+  -webkit-line-clamp: 1;
 `;
