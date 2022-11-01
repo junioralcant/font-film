@@ -107,6 +107,8 @@ export function Home() {
             background={film.banner}
             title={film.title}
             description={film.description}
+            director={film.director}
+            productor={film.producer}
           />
         ))}
       </ContainerFilms>
